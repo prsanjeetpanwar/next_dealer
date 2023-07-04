@@ -1,7 +1,9 @@
 "use client"
 import React, { useState } from 'react';
 import { Card, Form, Menu, Progress } from 'antd';
-
+import Link from 'next/link';
+import Delardetails from './Form/delardetails';
+import Registeraddress from './Form/Registeraddress';
 const { SubMenu } = Menu;
 
 const RightBoxForm = () => {
@@ -126,13 +128,27 @@ const RightBoxForm = () => {
         headStyle={{ background: '#9542ef', color: 'white' }}
       >
         <Form onFinish={handleFormSubmit}>
-          {currentMenu === 'registeredAddress' && (
-            <Form.Item
-              label="Registered Address"
-              name="registeredAddress"
-              rules={[{ required: true, message: 'Please enter the registered address' }]}
-            >
-            </Form.Item>
+          {currentMenu === 'dealerDetails' && (
+           <Form.Item
+           label="Dealer Details"
+           name="dealerDetails"
+          
+         >
+           <Delardetails/>
+          
+         </Form.Item>
+        
+          )}
+            {currentMenu === 'registeredAddress' && (
+           <Form.Item
+           label="Registered Address"
+           name="registeredAddress"
+          
+         >
+           <Registeraddress/>
+          
+         </Form.Item>
+        
           )}
           {currentMenu === 'contactPersonDetails' && (
             <Form.Item label="Contact Person Details" name="contactPersonDetails">

@@ -6,7 +6,7 @@ const { Option } = Select;
 
 
 
-const App: React.FC = () => {
+const Delardetails: React.FC = () => {
   
 
   const onFinish = (values: any) => {
@@ -111,4 +111,4 @@ const App: React.FC = () => {
   );
 };
 
-export default App;
+export default Delardetails;
