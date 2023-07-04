@@ -4,6 +4,7 @@ import { Card, Form, Menu, Progress } from 'antd';
 import Link from 'next/link';
 import Delardetails from './Form/delardetails';
 import Registeraddress from './Form/Registeraddress';
+import RegisterPersons from './Form/Contactpersondetails';
 const { SubMenu } = Menu;
 
 const RightBoxForm = () => {
@@ -151,7 +152,9 @@ const RightBoxForm = () => {
         
           )}
           {currentMenu === 'contactPersonDetails' && (
-            <Form.Item label="Contact Person Details" name="contactPersonDetails">
+            <Form.Item label="Contact Person Details"
+             name="contactPersonDetails">
+              <RegisterPersons/>
             </Form.Item>
           )}
           {currentMenu === 'bankDetails' && (

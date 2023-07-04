@@ -7,7 +7,7 @@ const RegisterAddress: React.FC = () => {
   const [form] = Form.useForm();
 
   useEffect(() => {
-    form.resetFields(); // Reset form fields on component mount
+    form.resetFields(); 
   }, [form]);
 
   const onFinish = (values: any) => {
