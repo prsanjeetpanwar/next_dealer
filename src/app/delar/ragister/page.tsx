@@ -1,13 +1,13 @@
 "use client"
 import React, { useState } from 'react';
-import { Card, Form,Menu, Progress } from 'antd';
-
+import { Card, Form, Menu, Progress } from 'antd';
 
 const { SubMenu } = Menu;
 
 const RightBoxForm = () => {
-  const [currentMenu, setCurrentMenu] = useState('registeredAddress');
+  const [currentMenu, setCurrentMenu] = useState('dealerDetails');
   const [values, setValues] = useState({
+    dealerDetails: '',
     registeredAddress: '',
     contactPersonDetails: '',
     bankDetails: '',
@@ -32,12 +32,55 @@ const RightBoxForm = () => {
   const handleFormSubmit = (values) => {
     setValues(values);
   };
+
   const calculateProgress = () => {
     const totalFields = Object.keys(values).length;
     const completedFields = Object.values(values).filter((value) => value !== '').length;
     const progressPercentage = (completedFields / totalFields) * 100;
     return Math.round(progressPercentage);
   };
+
+  const getTitleByMenuKey = (menuKey) => {
+    switch (menuKey) {
+      case 'dealerDetails':
+        return 'Dealer Details';
+      case 'registeredAddress':
+        return 'Registered Address';
+      case 'contactPersonDetails':
+        return 'Contact Person Details';
+      case 'bankDetails':
+        return 'Bank Details';
+      case 'godownDetails':
+        return 'Godown Details';
+      case 'nearestWarehouse':
+        return 'Nearest Warehouse';
+      case 'propertyDetails':
+        return 'Details of Property of Proprietor/Partner/Firm';
+      case 'registrationDetails':
+        return 'Registration Details';
+      case 'financialInformation':
+        return 'Financial Information';
+      case 'taxInformation':
+        return 'Income Tax/ GST/Other';
+      case 'fertilizerSale':
+        return 'Fertilizer Sale';
+      case 'agroInputs':
+        return 'Agro Inputs';
+      case 'salesCommitment':
+        return 'Sales Commitment';
+      case 'businessOperations':
+        return 'Business Operations';
+      case 'currentDealership':
+        return 'Current dealership details / Fertilizer/seeds/Pesticides/Others';
+      case 'documents':
+        return 'Documents';
+      default:
+        return '';
+    }
+  };
+
+  const cardTitle = getTitleByMenuKey(currentMenu);
+
   return (
     <div style={{ display: 'flex', height: '50vw' }}>
       <Menu
@@ -51,12 +94,12 @@ const RightBoxForm = () => {
           key="registeredAddress"
           style={{ height: 50, background: '#9542ef', color: 'white', display: 'flex', alignItems: 'center' }}
         >
-          <h3 style={{ margin: 10, marginRight: 9, marginTop:30 }}>Form</h3>
-          <div>
-          <Progress percent={calculateProgress()} size="small" />
+          <h3 style={{ margin: 10, marginRight: 9, marginTop: 30 }}>Form</h3>
+          <div style={{ display: 'flex', alignItems: 'center' }}>
+            <Progress percent={calculateProgress()} size="small" />
           </div>
-          
         </Menu.Item>
+        <Menu.Item key="dealerDetails">Dealer Details </Menu.Item>
         <Menu.Item key="registeredAddress">Registered Address</Menu.Item>
         <Menu.Item key="contactPersonDetails">Contact Person Details</Menu.Item>
         <Menu.Item key="bankDetails">Bank Details</Menu.Item>
@@ -78,7 +121,7 @@ const RightBoxForm = () => {
         <Menu.Item key="documents">Documents</Menu.Item>
       </Menu>
       <Card
-        title="Dealer Details"
+        title={cardTitle}
         style={{ flex: 1, marginLeft: 16 }}
         headStyle={{ background: '#9542ef', color: 'white' }}
       >
