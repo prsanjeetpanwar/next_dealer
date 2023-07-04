@@ -1,15 +1,34 @@
-"use client"
 import React, { useState } from 'react';
 import { Card, Form, Menu, Progress } from 'antd';
 import Link from 'next/link';
 import Delardetails from './Form/delardetails';
 import Registeraddress from './Form/Registeraddress';
 import RegisterPersons from './Form/Contactpersondetails';
+
 const { SubMenu } = Menu;
 
-const RightBoxForm = () => {
-  const [currentMenu, setCurrentMenu] = useState('dealerDetails');
-  const [values, setValues] = useState({
+interface FormValues {
+  dealerDetails: string;
+  registeredAddress: string;
+  contactPersonDetails: string;
+  bankDetails: string;
+  godownDetails: string;
+  nearestWarehouse: string;
+  propertyDetails: string;
+  registrationDetails: string;
+  financialInformation: string;
+  taxInformation: string;
+  fertilizerSale: string;
+  agroInputs: string;
+  salesCommitment: string;
+  businessOperations: string;
+  currentDealership: string;
+  documents: string;
+}
+
+const RightBoxForm: React.FC = () => {
+  const [currentMenu, setCurrentMenu] = useState<string>('dealerDetails');
+  const [values, setValues] = useState<FormValues>({
     dealerDetails: '',
     registeredAddress: '',
     contactPersonDetails: '',
@@ -28,11 +47,11 @@ const RightBoxForm = () => {
     documents: '',
   });
 
-  const handleMenuClick = (e) => {
+  const handleMenuClick = (e: any) => {
     setCurrentMenu(e.key);
   };
 
-  const handleFormSubmit = (values) => {
+  const handleFormSubmit = (values: FormValues) => {
     setValues(values);
   };
 
@@ -43,7 +62,7 @@ const RightBoxForm = () => {
     return Math.round(progressPercentage);
   };
 
-  const getTitleByMenuKey = (menuKey) => {
+  const getTitleByMenuKey = (menuKey: string) => {
     switch (menuKey) {
       case 'dealerDetails':
         return 'Dealer Details';
@@ -86,7 +105,7 @@ const RightBoxForm = () => {
 
   return (
     <div style={{ display: 'flex', height: '50vw' }}>
-      <Menu
+     <Menu
         mode="vertical"
         theme="light"
         style={{ width: 250 }}
@@ -130,17 +149,11 @@ const RightBoxForm = () => {
       >
         <Form onFinish={handleFormSubmit}>
           {currentMenu === 'dealerDetails' && (
-           <Form.Item
-           label="Dealer Details"
-           name="dealerDetails"
-          
-         >
-           <Delardetails/>
-          
-         </Form.Item>
-        
+            <Form.Item label="Dealer Details" name="dealerDetails">
+              <Delardetails />
+            </Form.Item>
           )}
-            {currentMenu === 'registeredAddress' && (
+        {currentMenu === 'registeredAddress' && (
            <Form.Item
            label="Registered Address"
            name="registeredAddress"
