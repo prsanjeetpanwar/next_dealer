@@ -25,6 +25,7 @@ const RegisterAddress: React.FC = () => {
               rules={[{ required: true, message: 'Please enter Address Line 1' }]}
             >
               <Input placeholder="Address Line 1" />
+
             </Form.Item>
           </Col>
         </Row>

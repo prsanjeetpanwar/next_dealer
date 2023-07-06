@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Button, Input, Form, Row, Col, Checkbox } from 'antd';
-import 'react-icons'
+import 'react-icons';
 
 const RegisterPersons: React.FC = () => {
   const [persons, setPersons] = useState([{ id: 1 }]); 

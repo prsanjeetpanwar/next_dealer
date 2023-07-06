@@ -1,3 +1,4 @@
+"use client";
 "use strict";
 exports.__esModule = true;
 var react_1 = require("react");
@@ -5,6 +6,9 @@ var antd_1 = require("antd");
 var delardetails_1 = require("./Form/delardetails");
 var Registeraddress_1 = require("./Form/Registeraddress");
 var Contactpersondetails_1 = require("./Form/Contactpersondetails");
+var BankDetailsForm_1 = require("./Form/BankDetailsForm");
+var GodownDetails_1 = require("./Form/GodownDetails");
+var NearestWarehouseForm_1 = require("./Form/NearestWarehouseForm");
 var SubMenu = antd_1.Menu.SubMenu;
 var RightBoxForm = function () {
     var _a = react_1.useState('dealerDetails'), currentMenu = _a[0], setCurrentMenu = _a[1];
@@ -32,12 +36,12 @@ var RightBoxForm = function () {
     var handleFormSubmit = function (values) {
         setValues(values);
     };
-    var calculateProgress = function () {
-        var totalFields = Object.keys(values).length;
-        var completedFields = Object.values(values).filter(function (value) { return value !== ''; }).length;
-        var progressPercentage = (completedFields / totalFields) * 100;
-        return Math.round(progressPercentage);
-    };
+    // const calculateProgress = () => {
+    //   const totalFields = Object.keys(values).length;
+    //   const completedFields = Object.values(values).filter((value) => value !== '').length;
+    //   const progressPercentage = (completedFields / totalFields) * 100;
+    //   return Math.round(progressPercentage);
+    // };
     var getTitleByMenuKey = function (menuKey) {
         switch (menuKey) {
             case 'dealerDetails':
@@ -81,8 +85,7 @@ var RightBoxForm = function () {
         react_1["default"].createElement(antd_1.Menu, { mode: "vertical", theme: "light", style: { width: 250 }, selectedKeys: [currentMenu], onClick: handleMenuClick },
             react_1["default"].createElement(antd_1.Menu.Item, { key: "registeredAddress", style: { height: 50, background: '#9542ef', color: 'white', display: 'flex', alignItems: 'center' } },
                 react_1["default"].createElement("h3", { style: { margin: 10, marginRight: 9, marginTop: 30 } }, "Form"),
-                react_1["default"].createElement("div", { style: { display: 'flex', alignItems: 'center' } },
-                    react_1["default"].createElement(antd_1.Progress, { percent: calculateProgress(), size: "small" }))),
+                react_1["default"].createElement("div", { style: { display: 'flex', alignItems: 'center' } })),
             react_1["default"].createElement(antd_1.Menu.Item, { key: "dealerDetails" }, "Dealer Details "),
             react_1["default"].createElement(antd_1.Menu.Item, { key: "registeredAddress" }, "Registered Address"),
             react_1["default"].createElement(antd_1.Menu.Item, { key: "contactPersonDetails" }, "Contact Person Details"),
@@ -107,6 +110,13 @@ var RightBoxForm = function () {
                     react_1["default"].createElement(Registeraddress_1["default"], null))),
                 currentMenu === 'contactPersonDetails' && (react_1["default"].createElement(antd_1.Form.Item, { label: "Contact Person Details", name: "contactPersonDetails" },
                     react_1["default"].createElement(Contactpersondetails_1["default"], null))),
-                currentMenu === 'bankDetails' && (react_1["default"].createElement(antd_1.Form.Item, { label: "Bank Details", name: "bankDetails" }))))));
+                currentMenu === 'bankDetails' && (react_1["default"].createElement(antd_1.Form.Item, { label: "Bank Details", name: "bankDetails" },
+                    react_1["default"].createElement(BankDetailsForm_1["default"], null))),
+                currentMenu === 'godownDetails' && (react_1["default"].createElement(antd_1.Form.Item, { label: "Godown Details", name: "godownDetails" },
+                    react_1["default"].createElement(GodownDetails_1["default"], null))),
+                currentMenu === 'nearestWarehouse' && (react_1["default"].createElement(antd_1.Form.Item, { label: "Nearest Warehouse", name: "nearestWarehouse" },
+                    react_1["default"].createElement(NearestWarehouseForm_1["default"], null))),
+                currentMenu === 'propertyDetails' && (react_1["default"].createElement(antd_1.Form.Item, { label: "Details of Property of Proprietor/Partner/Firm", name: "propertyDetails" },
+                    react_1["default"].createElement(PropertyDetailsForm, null)))))));
 };
 exports["default"] = RightBoxForm;

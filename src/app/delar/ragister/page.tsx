@@ -1,9 +1,14 @@
+"use client"
 import React, { useState } from 'react';
 import { Card, Form, Menu, Progress } from 'antd';
 import Link from 'next/link';
 import Delardetails from './Form/delardetails';
 import Registeraddress from './Form/Registeraddress';
 import RegisterPersons from './Form/Contactpersondetails';
+import BankDetailsForm from './Form/BankDetailsForm';
+import GodownDetailsForm from './Form/GodownDetails'
+import NearestWarehouseForm from './Form/NearestWarehouseForm'
+
 
 const { SubMenu } = Menu;
 
@@ -55,12 +60,12 @@ const RightBoxForm: React.FC = () => {
     setValues(values);
   };
 
-  const calculateProgress = () => {
-    const totalFields = Object.keys(values).length;
-    const completedFields = Object.values(values).filter((value) => value !== '').length;
-    const progressPercentage = (completedFields / totalFields) * 100;
-    return Math.round(progressPercentage);
-  };
+  // const calculateProgress = () => {
+  //   const totalFields = Object.keys(values).length;
+  //   const completedFields = Object.values(values).filter((value) => value !== '').length;
+  //   const progressPercentage = (completedFields / totalFields) * 100;
+  //   return Math.round(progressPercentage);
+  // };
 
   const getTitleByMenuKey = (menuKey: string) => {
     switch (menuKey) {
@@ -118,7 +123,7 @@ const RightBoxForm: React.FC = () => {
         >
           <h3 style={{ margin: 10, marginRight: 9, marginTop: 30 }}>Form</h3>
           <div style={{ display: 'flex', alignItems: 'center' }}>
-            <Progress percent={calculateProgress()} size="small" />
+            {/* <Progress percent={calculateProgress()} size="small" /> */}
           </div>
         </Menu.Item>
         <Menu.Item key="dealerDetails">Dealer Details </Menu.Item>
@@ -172,6 +177,22 @@ const RightBoxForm: React.FC = () => {
           )}
           {currentMenu === 'bankDetails' && (
             <Form.Item label="Bank Details" name="bankDetails">
+              <BankDetailsForm/>
+            </Form.Item>
+          )}
+           {currentMenu === 'godownDetails' && (
+            <Form.Item label="Godown Details" name="godownDetails">
+              <GodownDetailsForm/>
+            </Form.Item>
+          )}
+           {currentMenu === 'nearestWarehouse' && (
+            <Form.Item label="Nearest Warehouse" name="nearestWarehouse">
+              <NearestWarehouseForm/>
+            </Form.Item>
+          )}
+           {currentMenu === 'propertyDetails' && (
+            <Form.Item label="Details of Property of Proprietor/Partner/Firm" name="propertyDetails">
+           <PropertyDetailsForm/>
             </Form.Item>
           )}
         </Form>
@@ -181,3 +202,4 @@ const RightBoxForm: React.FC = () => {
 };
 
 export default RightBoxForm;
+// PropertyDetailsForm
